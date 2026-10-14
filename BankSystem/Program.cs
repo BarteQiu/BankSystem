@@ -30,7 +30,7 @@ while(Choice != 0)
         case 2:
             Console.Clear();
             Console.WriteLine($"How much money do you want to deposit?");
-            double Deposit = int.Parse(Console.ReadLine());
+            double Deposit = double.Parse(Console.ReadLine());
 
             if (Deposit <= 0)
             {
@@ -46,7 +46,7 @@ while(Choice != 0)
         case 3:
             Console.Clear();
             Console.WriteLine($"How much money do you want to withdraw?");
-            double Withdraw = int.Parse(Console.ReadLine());
+            double Withdraw = double.Parse(Console.ReadLine());
 
             if (Withdraw <= 0)
             {
