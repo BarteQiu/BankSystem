@@ -1,6 +1,6 @@
 # BankSystem
-
 A console-based banking system written in C# as a learning project.
+[View Program.cs](https://github.com/BarteQiu/BankSystem/blob/main/BankSystem/Program.cs)
 
 ## About the Project
 
