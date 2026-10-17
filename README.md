@@ -1,51 +1,76 @@
-# BankSystem
+# 🏦 BankSystem
 
-A simple console-based banking system written in C# as a learning project.
+A simple console-based banking application written in **C#** as a learning project.
 
-## About the Project
+🚀 The project is developed step by step alongside my C# learning roadmap, focusing on programming fundamentals, input validation, methods, and object-oriented programming.
 
-BankSystem is a small application that simulates basic banking operations. The project is developed incrementally to improve C# programming skills, practice problem-solving, and learn how to build applications step by step.
+## 📌 Current Version
 
-## Current Features
+**v0.2**
 
-- Display the account balance
-- Deposit money
-- Withdraw money
-- Navigate through a console menu
-- Exit the application
+## ✨ Features
 
-## Source Code
+- 📋 Interactive console menu
+- 💰 Display current account balance
+- ➕ Deposit money
+- ➖ Withdraw money
+- 🛡️ Input validation using `TryParse()`
+- 🚫 Reject zero and negative transaction amounts
+- 🔒 Prevent withdrawals exceeding the available balance
+- ⚠️ Handle invalid menu selections and incorrect input
+- 💵 Use `decimal` for monetary values
 
-[View Program.cs](https://github.com/BarteQiu/BankSystem/blob/main/BankSystem/Program.cs)
+## 🛠️ Technologies
 
-## Technologies
+- 💻 C#
+- 🧩 Visual Studio
+- 🌿 Git and GitHub
 
-- C#
-- Visual Studio
+## 📂 Project Structure
 
-## Learning Goals
+```text
+BankSystem/
+├── BankSystem/
+│   └── Program.cs
+└── README.md
+```
 
-- Practice conditional statements and loops
-- Handle user input
-- Implement input validation
-- Improve problem-solving skills
-- Learn to structure and develop applications incrementally
+## 💻 Source Code
 
-## Planned Features
+👉 [View Program.cs on GitHub](https://github.com/BarteQiu/BankSystem/blob/main/BankSystem/Program.cs)
 
-- Refactor the code using methods
-- Introduce a `BankAccount` class
-- Add transaction history
-- Support multiple bank accounts
-- Implement money transfers
-- Save and load data from files
-- Add automated tests
+## ▶️ How to Run
 
-## Project Status
+1. 📥 Clone or download this repository.
+2. 🖥️ Open the project in Visual Studio.
+3. ▶️ Build and run the application.
+4. 📋 Follow the instructions displayed in the console.
 
-- **Current version:** 0.1
-- **Status:** In development
+## 🚧 Project Status
 
-## Disclaimer
+The project is under active development.
 
-This project is intended for educational purposes only. It is a learning simulation and does not implement real banking or security functionality.
+Version **v0.2** focuses on separating program logic into methods, validating user input, and handling basic banking operations.
+
+Future versions will introduce object-oriented programming and additional functionality as I progress through my C# learning roadmap.
+
+## 🗺️ Planned Improvements
+
+- 🏦 Create a `BankAccount` class
+- 🔐 Encapsulate account balance and transaction logic
+- 🧾 Add transaction history
+- 👥 Support multiple bank accounts
+- 🔄 Implement transfers between accounts
+- 💾 Save and load account data from files
+- 🧪 Add unit tests
+- 🧹 Improve code organization and maintainability
+
+## 🎯 Purpose
+
+This project is part of my journey toward becoming a **Junior C# Backend Developer**.
+
+Its purpose is to practise C# programming, problem-solving, clean code, and gradually apply more advanced programming concepts in a practical project.
+
+---
+
+⭐ *Built as a hands-on learning project and improved with every version.*
