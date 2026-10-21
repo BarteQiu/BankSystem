@@ -2,11 +2,11 @@
 
 A simple console-based banking application written in **C#** as a learning project.
 
-🚀 The project is developed step by step alongside my C# learning roadmap, focusing on programming fundamentals, input validation, methods, and object-oriented programming.
+🚀 The project is developed step by step alongside my C# learning roadmap, focusing on programming fundamentals, input validation, object-oriented programming, and clean code.
 
 ## 📌 Current Version
 
-**v0.2**
+**v0.3**
 
 ## ✨ Features
 
@@ -19,21 +19,33 @@ A simple console-based banking application written in **C#** as a learning proje
 - 🔒 Prevent withdrawals exceeding the available balance
 - ⚠️ Handle invalid menu selections and incorrect input
 - 💵 Use `decimal` for monetary values
+- 🏦 Separate `BankAccount` and `BankSystem` classes
+- 🔐 Encapsulate account balance using a private field
+- 🧱 Initialize accounts using a constructor
+- ✅ Validate transactions inside the account class
+- 🔄 Separate account logic from console interaction
 
 ## 🛠️ Technologies
 
 - 💻 C#
 - 🧩 Visual Studio
 - 🌿 Git and GitHub
+- ⚙️ .NET
 
 ## 📂 Project Structure
 
 ```text
 BankSystem/
 ├── BankSystem/
-│   └── Program.cs
+│   ├── Program.cs
+│   ├── BankSystem.cs
+│   └── BankAccount.cs
 └── README.md
 ```
+
+- `Program.cs` — application entry point and main console menu.
+- `BankSystem.cs` — handles user interaction and calls account operations.
+- `BankAccount.cs` — manages the account balance, deposits, withdrawals, and transaction validation.
 
 ## 💻 Source Code
 
@@ -50,26 +62,26 @@ BankSystem/
 
 The project is under active development.
 
-Version **v0.2** focuses on separating program logic into methods, validating user input, and handling basic banking operations.
+**Version v0.3** introduces object-oriented programming by separating account management from console interaction.
 
-Future versions will introduce object-oriented programming and additional functionality as I progress through my C# learning roadmap.
+The account balance is encapsulated in the `BankAccount` class, which controls deposits and withdrawals and validates transaction amounts. The `BankSystem` class handles user input and displays the results.
+
+Future versions will introduce additional functionality as I progress through my C# learning roadmap.
 
 ## 🗺️ Planned Improvements
 
-- 🏦 Create a `BankAccount` class
-- 🔐 Encapsulate account balance and transaction logic
 - 🧾 Add transaction history
 - 👥 Support multiple bank accounts
 - 🔄 Implement transfers between accounts
 - 💾 Save and load account data from files
 - 🧪 Add unit tests
-- 🧹 Improve code organization and maintainability
+- 🧹 Further improve code organization and maintainability
 
 ## 🎯 Purpose
 
-This project is part of my journey toward becoming a **Junior C# Backend Developer**.
+This project is part of my journey toward becoming a **Junior C#/.NET Backend Developer**.
 
-Its purpose is to practise C# programming, problem-solving, clean code, and gradually apply more advanced programming concepts in a practical project.
+Its purpose is to practise C# programming, problem-solving, object-oriented programming, and clean code while gradually applying more advanced concepts in a practical project.
 
 ---
 
