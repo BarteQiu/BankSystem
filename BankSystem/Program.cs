@@ -1,4 +1,6 @@
-﻿const string Version = "0.2";
+﻿bankSystem bankSystem = new bankSystem();
+
+const string Version = "0.3";
 
 Console.WriteLine("========================");
 Console.WriteLine($"Bank system v{Version}");
@@ -6,7 +8,6 @@ Console.WriteLine("========================");
 Console.WriteLine("\n\n\n");
 
 string Choice;
-decimal Money = 1.87m;
 
 bool programIsOn = true;
 
@@ -29,15 +30,15 @@ while(programIsOn)
         case 1:
             Console.Clear();
             Console.WriteLine("\n");
-            showBalance();
+            bankSystem.showBalance();
             break;
 
         case 2:
-            depositMoney();
+            bankSystem.depositMoney();
             break;
 
         case 3:
-            withdrawMoney();
+            bankSystem.withdrawMoney();
             break;
 
         case 0:
@@ -63,71 +64,5 @@ void showMenu()
     Console.WriteLine("========================");
 }
 
-void showBalance()
-{
-    Console.WriteLine($"Your balance is {Money:F2}$");
-    Console.WriteLine("\n\n\n");
-}
 
-void depositMoney()
-{
-    Console.Clear();
-    Console.WriteLine($"How much money do you want to deposit?");
 
-    string Deposit = Console.ReadLine();
-
-    if (!decimal.TryParse(Deposit, out decimal userDeposit))
-    {
-        Console.WriteLine("Invalid amount. Please enter a number.");
-        Console.WriteLine("\n\n\n");
-        return;
-    }
-
-    if (userDeposit <= 0)
-    {
-        Console.WriteLine("Amount must be higher than zero. Try again.");
-        Console.WriteLine("\n\n\n");
-        return;
-    }
-
-    Money += userDeposit;
-    Console.WriteLine("Deposit successful.");
-    Console.WriteLine("\n");
-    showBalance();
-    Console.WriteLine("\n\n\n");
-}
-
-void withdrawMoney()
-{
-    Console.Clear();
-    Console.WriteLine($"How much money do you want to withdraw?");
-
-    string Withdraw = Console.ReadLine();
-
-    if (!decimal.TryParse(Withdraw, out decimal userWithdraw))
-    {
-        Console.WriteLine("Invalid amount. Please enter a number.");
-        Console.WriteLine("\n\n\n");
-        return;
-    }
-
-    if (userWithdraw <= 0)
-    {
-        Console.WriteLine("Amount must be higher than zero. Please try again.");
-        Console.WriteLine("\n\n\n");
-        return;
-    }
-
-    if (Money < userWithdraw)
-    {
-        Console.WriteLine("You don't have enough money to withdraw");
-        Console.WriteLine("\n\n\n");
-        return;
-    }
-
-    Money -= userWithdraw;
-    Console.WriteLine("Withdraw successful.");
-    Console.WriteLine("\n");
-    showBalance();
-    Console.WriteLine("\n\n\n");
-}
