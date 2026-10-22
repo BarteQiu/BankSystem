@@ -66,9 +66,28 @@
         }
         _account.withdrawMoney(userWithdraw);
 
-        Console.WriteLine("Deposit successful.");
+        Console.WriteLine("Withdrawal successful.");
 
         Console.WriteLine($"\nYour balance is {_account.Balance:F2}$");
         Console.WriteLine("\n\n\n");
+    }
+
+    public void ShowTransactionHistory()
+    {
+        Console.Clear();
+        Console.WriteLine("====== TransactionHistory ======");
+
+        if(_account.Transactions.Count == 0)
+        {
+            Console.WriteLine("You dont have transaction history.");
+        }
+
+        foreach (Transaction transaction in _account.Transactions)
+        {
+            Console.WriteLine
+                ($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | {transaction.Type} | {transaction.Amount}$");
+        }
+        Console.WriteLine("================================");
+        Console.WriteLine($"\nYour balance is {_account.Balance:F2}$ \n\n\n");
     }
 }

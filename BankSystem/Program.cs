@@ -1,6 +1,6 @@
 ﻿bankSystem bankSystem = new bankSystem();
 
-const string Version = "0.3";
+const string Version = "0.4";
 
 Console.WriteLine("========================");
 Console.WriteLine($"Bank system v{Version}");
@@ -40,6 +40,9 @@ while(programIsOn)
         case 3:
             bankSystem.withdrawMoney();
             break;
+        case 4:
+            bankSystem.ShowTransactionHistory();
+            break;
 
         case 0:
             Console.Clear();
@@ -60,6 +63,7 @@ void showMenu()
     Console.WriteLine("1. Check balance");
     Console.WriteLine("2. Deposit money");
     Console.WriteLine("3. Withdraw money");
+    Console.WriteLine("4. Transaction history");
     Console.WriteLine("0. Exit");
     Console.WriteLine("========================");
 }
