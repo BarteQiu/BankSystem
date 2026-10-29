@@ -1,8 +1,8 @@
 ﻿public class Transaction
 {
-    public decimal Amount { get; }
-    public TransactionType Type { get; }
-    public DateTime Date { get; }
+    public decimal Amount { get; set; }
+    public TransactionType Type { get; set; }
+    public DateTime Date { get; set; }
 
     public enum TransactionType
     {

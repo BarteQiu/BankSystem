@@ -6,14 +6,20 @@
     {
         get { return _balance; }
     }
+    private decimal _id;
+    public decimal Id
+    {
+        get { return _id; }
+    }
 
-    public bankAccount(decimal initialBalance)
+    public bankAccount(decimal initialBalance, int Id)
     {
         if(initialBalance < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(initialBalance), "Initial balance cannot be negative.");
         }
         _balance = initialBalance;
+        _id = Id;
     }
 
     public void showBalance()
