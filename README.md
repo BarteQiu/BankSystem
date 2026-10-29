@@ -6,7 +6,7 @@ A simple console-based banking application written in **C#** as a learning proje
 
 ## 📌 Current Version
 
-**v0.5**
+**v0.6**
 
 ## ✨ Features
 
@@ -14,12 +14,16 @@ A simple console-based banking application written in **C#** as a learning proje
 - 💰 Display account balances
 - ➕ Deposit money
 - ➖ Withdraw money
+- 🔄 Transfer money between accounts
 - 🧾 View transaction history
+- 📥 Track incoming transfers
+- 📤 Track outgoing transfers
+- 🔎 Filter transaction history by transaction type
 - 📅 Record transaction dates and times
-- 🏷️ Distinguish between deposits and withdrawals
+- 🏷️ Distinguish between deposits, withdrawals, and transfers
 - 🛡️ Input validation using `TryParse()`
 - 🚫 Reject zero and negative transaction amounts
-- 🔒 Prevent withdrawals exceeding the available balance
+- 🔒 Prevent withdrawals and transfers exceeding the available balance
 - ⚠️ Handle invalid menu selections and incorrect input
 - 💵 Use `decimal` for monetary values
 - 🏦 Manage multiple bank accounts
@@ -58,7 +62,7 @@ BankSystem/
 
 - `Program.cs` — application entry point and main console menu.
 - `BankSystem.cs` — manages accounts, handles user interaction, and displays account and transaction information.
-- `BankAccount.cs` — manages individual account balances, deposits, withdrawals, and transaction history.
+- `BankAccount.cs` — manages individual account balances, deposits, withdrawals, transfers, and transaction history.
 - `Transaction.cs` — represents a single transaction, including its amount, type, and date.
 - `ConsoleUI.cs` — provides reusable methods for formatting console output and displaying messages.
 
@@ -77,17 +81,18 @@ BankSystem/
 
 The project is under active development.
 
-**Version v0.5** introduces support for multiple bank accounts and improves the console user interface.
+**Version v0.6** introduces money transfers between bank accounts and improves transaction history filtering.
 
-Users can create new accounts, each with a unique identifier, search for accounts by ID, and display a list of all existing accounts. Each account maintains its own balance and transaction history, ensuring that deposits, withdrawals, and recorded transactions belong to the correct account.
+Users can transfer money between existing accounts. The application validates account IDs, prevents transfers to the same account, rejects invalid amounts, and checks whether the source account has sufficient funds before processing a transfer.
 
-The console UI has also been improved with reusable methods for displaying headers, success messages, error messages, and informational messages, helping keep the interface more consistent and readable.
+Each successful transfer is recorded in both accounts: as an outgoing transfer for the sender and an incoming transfer for the recipient. Users can view the complete transaction history, filter it to show deposits and incoming transfers or withdrawals and outgoing transfers, and inspect transaction records when searching for an account.
+
+The project also supports multiple bank accounts, individual account balances, deposits, withdrawals, and account-specific transaction histories. The console UI uses reusable methods for displaying headers, success messages, error messages, and informational messages.
 
 The project continues to evolve alongside my C# learning roadmap, with each version introducing new functionality and opportunities to practise programming concepts.
 
 ## 🗺️ Planned Improvements
 
-- 🔄 Implement transfers between accounts
 - 💾 Save and load account data from files
 - 🧪 Add unit tests
 - 🧹 Further improve code organization and maintainability
