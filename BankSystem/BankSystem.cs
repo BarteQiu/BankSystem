@@ -1,6 +1,7 @@
 ﻿using System.Data.Common;
 using System.Security.Principal;
 using System.Transactions;
+using static Transaction;
 
 class bankSystem
 {
@@ -69,7 +70,17 @@ class bankSystem
 
         if (account == null)
         {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
             ConsoleUI.ShowError("Account does not exist.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
             return;
         }
 
@@ -79,8 +90,8 @@ class bankSystem
         ConsoleUI.ShowHeader("                BALANCE");
         ConsoleUI.ShowSeparator();
         Console.WriteLine();
-        Console.WriteLine($" Account ID          : {account.Id}");
-        Console.WriteLine($" Previous balance    : {account.Balance:F2}$");
+        Console.WriteLine($" Account ID   : {account.Id}");
+        Console.WriteLine($" Balance      : {account.Balance:F2}$");
         Console.WriteLine();
         ConsoleUI.ShowSeparator();
         Console.WriteLine();
@@ -206,7 +217,6 @@ class bankSystem
     public void withdrawMoney()
     {
         Console.Clear();
-        Console.Clear();
         ConsoleUI.ShowSeparator();
         ConsoleUI.ShowHeader("              WITHDRAW MONEY");
         ConsoleUI.ShowSeparator();
@@ -318,7 +328,7 @@ class bankSystem
         Console.WriteLine();
         Console.WriteLine($" Account ID          : {account.Id}");
         Console.WriteLine($" Previous balance    : {account.Balance:F2}$");
-        Console.WriteLine($" Deposit amount      : {userWithdraw}$");
+        Console.WriteLine($" Withdraw amount     : {userWithdraw}$");
         Console.WriteLine();
         ConsoleUI.ShowSeparator();
         Console.WriteLine();
@@ -436,17 +446,39 @@ class bankSystem
 
                 foreach (Transaction transaction in allHistory)
                 {
-                    if(transaction.Type == Transaction.TransactionType.Deposit)
+                    string transactionName = transaction.Type switch
+                    {
+                        Transaction.TransactionType.Deposit => "Deposit",
+                        Transaction.TransactionType.Withdraw => "Withdraw",
+                        Transaction.TransactionType.TransactionIn => "Transfer In",
+                        Transaction.TransactionType.TransactionOut => "Transfer Out"
+                    };
+
+                    if (transaction.Type == Transaction.TransactionType.Deposit)
                     {
                         Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
-                        ConsoleUI.greenText($"{transaction.Type} ");
-                        Console.Write($" | {transaction.Amount}$ \n");
+                        ConsoleUI.greenText($"{transactionName} ");
+                        Console.Write($"     | {transaction.Amount}$ \n");
                     }
 
                     if (transaction.Type == Transaction.TransactionType.Withdraw)
                     {
                         Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
-                        ConsoleUI.redText($"{transaction.Type}");
+                        ConsoleUI.redText($"{transactionName}");
+                        Console.Write($"     | {transaction.Amount}$ \n");
+                    }
+
+                    if (transaction.Type == Transaction.TransactionType.TransactionIn)
+                    {
+                        Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                        ConsoleUI.greenText($"{transactionName}");
+                        Console.Write($"  | {transaction.Amount}$ \n");
+                    }
+
+                    if (transaction.Type == Transaction.TransactionType.TransactionOut)
+                    {
+                        Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                        ConsoleUI.redText($"{transactionName}");
                         Console.Write($" | {transaction.Amount}$ \n");
                     }
                 }
@@ -461,7 +493,8 @@ class bankSystem
             case 2:
                 var depoHistory = account.Transactions
                     .OrderByDescending(p => p.Date)
-                    .Where(p => p.Type == Transaction.TransactionType.Deposit);
+                    .Where(p => p.Type == Transaction.TransactionType.Deposit 
+                             || p.Type == Transaction.TransactionType.TransactionIn);
 
                 Console.Clear();
                 ConsoleUI.ShowHeader("====== TransactionHistory ======");
@@ -473,9 +506,25 @@ class bankSystem
 
                 foreach (Transaction transaction in depoHistory)
                 {
-                    Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
-                    ConsoleUI.greenText($"{transaction.Type} ");
-                    Console.Write($" | {transaction.Amount}$ \n");
+                    string transactionName = transaction.Type switch
+                    {
+                        Transaction.TransactionType.Deposit => "Deposit",
+                        Transaction.TransactionType.TransactionIn => "Transfer In",
+                    };
+
+                    if (transaction.Type == Transaction.TransactionType.Deposit)
+                    {
+                        Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                        ConsoleUI.greenText($"{transactionName} ");
+                        Console.Write($"     | {transaction.Amount}$ \n");
+                    }
+
+                    if (transaction.Type == Transaction.TransactionType.TransactionIn)
+                    {
+                        Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                        ConsoleUI.greenText($"{transactionName}");
+                        Console.Write($"  | {transaction.Amount}$ \n");
+                    }
                 }
 
                 ConsoleUI.ShowHeader("================================ \n");
@@ -488,7 +537,8 @@ class bankSystem
             case 3:
                 var withHistory = account.Transactions
                     .OrderByDescending(p => p.Date)
-                    .Where(p => p.Type == Transaction.TransactionType.Withdraw);
+                    .Where(p => p.Type == Transaction.TransactionType.Withdraw
+                             || p.Type == Transaction.TransactionType.TransactionOut);
 
                 Console.Clear();
                 ConsoleUI.ShowHeader("====== TransactionHistory ======");
@@ -500,9 +550,25 @@ class bankSystem
 
                 foreach (Transaction transaction in withHistory)
                 {
-                    Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
-                    ConsoleUI.redText($"{transaction.Type}");
-                    Console.Write($" | {transaction.Amount}$ \n");
+                    string transactionName = transaction.Type switch
+                    {
+                        Transaction.TransactionType.Withdraw => "Withdraw",
+                        Transaction.TransactionType.TransactionOut => "Transfer Out"
+                    };
+
+                    if (transaction.Type == Transaction.TransactionType.Withdraw)
+                    {
+                        Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                        ConsoleUI.redText($"{transactionName}");
+                        Console.Write($"     | {transaction.Amount}$ \n");
+                    }
+
+                    if (transaction.Type == Transaction.TransactionType.TransactionOut)
+                    {
+                        Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                        ConsoleUI.redText($"{transactionName}");
+                        Console.Write($" | {transaction.Amount}$ \n");
+                    }
                 }
 
                 ConsoleUI.ShowHeader("================================ \n");
@@ -604,8 +670,20 @@ class bankSystem
 
         if (_accounts.Count == 0)
         {
+            Console.Clear();
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
             ConsoleUI.ShowInfo("No accounts found.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
             return;
+
         }
 
         foreach (bankAccount acc in _accounts)
@@ -713,17 +791,39 @@ class bankSystem
 
         foreach (Transaction transaction in allHistory)
         {
+            string transactionName = transaction.Type switch
+            {
+                Transaction.TransactionType.Deposit => "Deposit",
+                Transaction.TransactionType.Withdraw => "Withdraw",
+                Transaction.TransactionType.TransactionIn => "Transfer In",
+                Transaction.TransactionType.TransactionOut => "Transfer Out",
+            };
+
             if (transaction.Type == Transaction.TransactionType.Deposit)
             {
                 Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
-                ConsoleUI.greenText($"{transaction.Type} ");
+                ConsoleUI.greenText($"{transactionName} ");
+                Console.Write($" | {transaction.Amount}$ \n");
+            }
+
+            if (transaction.Type == Transaction.TransactionType.TransactionIn)
+            {
+                Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                ConsoleUI.greenText($"{transactionName} ");
                 Console.Write($" | {transaction.Amount}$ \n");
             }
 
             if (transaction.Type == Transaction.TransactionType.Withdraw)
             {
                 Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
-                ConsoleUI.redText($"{transaction.Type}");
+                ConsoleUI.redText($"{transactionName}");
+                Console.Write($" | {transaction.Amount}$ \n");
+            }
+
+            if (transaction.Type == Transaction.TransactionType.TransactionOut)
+            {
+                Console.Write($"[ {transaction.Date.ToString("HH:mm:ss dd.MM.yyyy")} ] | ");
+                ConsoleUI.redText($"{transactionName}");
                 Console.Write($" | {transaction.Amount}$ \n");
             }
         }
@@ -739,6 +839,207 @@ class bankSystem
 
         Console.WriteLine("\n");
     }
+
+    public void transferMoney()
+    {
+        Console.Clear();
+
+        ConsoleUI.ShowSeparator();
+        ConsoleUI.ShowHeader("             TRANSFER MONEY");
+        ConsoleUI.ShowSeparator();
+        Console.WriteLine("\n");
+
+        ConsoleUI.grayText("Enter the ID of the account to transfer money from: ");
+        string sourceIdInput = Console.ReadLine();
+
+        if (!int.TryParse(sourceIdInput, out int accountId1))
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Invalid account ID.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            return;
+        }
+
+        ConsoleUI.grayText("Enter the ID of the account to transfer money to: ");
+        string destinationIdInput = Console.ReadLine();
+
+        if (!int.TryParse(destinationIdInput, out int accountId2))
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Invalid account ID.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            return;
+        }
+
+        var account1 = _accounts.SingleOrDefault(a => a.Id == accountId1);
+        var account2 = _accounts.SingleOrDefault(a => a.Id == accountId2);
+
+        if (account1 == null || account2 == null)
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Account does not exist.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            return;
+        }
+
+        if (account1.Id == account2.Id)
+        {
+            Console.Clear();
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Cannot transfer money to the same account.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            return;
+        }
+
+        ConsoleUI.grayText("Enter the transfer amount: ");
+        string Amount = Console.ReadLine();
+
+        if (!decimal.TryParse(Amount, out decimal transferAmount))
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Invalid transfer amount.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            return;
+        }
+
+        if(transferAmount <= 0)
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Invalid transfer amount.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            return;
+        }
+
+        if(account1.Balance < transferAmount)
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("You don't have enough money to make this transfer.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+
+            return;
+        }
+
+
+        bool withdrawSuccessful = account1.SubstractTransferMoney(transferAmount);
+
+        if (!withdrawSuccessful)
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Unable to complete the transfer.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+            return;
+        }
+
+        bool depositSuccessful = account2.AddTransferMoney(transferAmount);
+
+        if (!depositSuccessful)
+        {
+            Console.WriteLine("\n");
+            ConsoleUI.ShowSeparator();
+            ConsoleUI.ShowError("Unable to complete the transfer.");
+            ConsoleUI.ShowSeparator();
+            Console.WriteLine("\n\n\n");
+
+            Console.WriteLine("        Press any key to continue...");
+
+            Console.ReadKey(true);
+
+            Console.Clear();
+            return;
+        }
+
+        Console.Clear();
+
+        ConsoleUI.ShowSeparator();
+        ConsoleUI.ShowHeader("             TRANSFER MONEY");
+        ConsoleUI.ShowSeparator();
+        Console.WriteLine();
+        Console.WriteLine($" From Account ID     : {account1.Id}");
+        Console.WriteLine($" To Account ID       : {account2.Id}");
+        Console.WriteLine($" Amount              : {transferAmount:F2}");
+        Console.WriteLine();
+        ConsoleUI.ShowSuccess("Money has been transferred successfully.");
+        ConsoleUI.ShowSeparator();
+        Console.WriteLine();
+        Console.WriteLine("        Press any key to continue...");
+
+        Console.ReadKey(true);
+
+        Console.Clear();
+    }
+
+
+
 
     void showMenuAccount()
     {
@@ -757,4 +1058,3 @@ class bankSystem
         ConsoleUI.ShowSeparator();
     }
 }
-

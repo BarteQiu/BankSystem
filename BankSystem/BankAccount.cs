@@ -6,8 +6,8 @@
     {
         get { return _balance; }
     }
-    private decimal _id;
-    public decimal Id
+    private int _id;
+    public int Id
     {
         get { return _id; }
     }
@@ -20,12 +20,6 @@
         }
         _balance = initialBalance;
         _id = Id;
-    }
-
-    public void showBalance()
-    {
-        Console.WriteLine($"Your balance is {Balance:F2}$");
-        Console.WriteLine("\n\n\n");
     }
 
     public bool depositMoney(decimal amount)
@@ -46,6 +40,28 @@
 
         Transaction transactionWithdraw = new Transaction(amount, Transaction.TransactionType.Withdraw);
         Transactions.Add(transactionWithdraw);
+        _balance -= amount;
+        return true;
+    }
+
+    public bool AddTransferMoney(decimal amount)
+    {
+        if (amount <= 0)
+            return false;
+
+        Transaction transactionTransfer = new Transaction(amount, Transaction.TransactionType.TransactionIn);
+        Transactions.Add(transactionTransfer);
+        _balance += amount;
+        return true;
+    }
+
+    public bool SubstractTransferMoney(decimal amount)
+    {
+        if (amount <= 0 || _balance < amount)
+            return false;
+
+        Transaction transactionTransfer = new Transaction(amount, Transaction.TransactionType.TransactionOut);
+        Transactions.Add(transactionTransfer);
         _balance -= amount;
         return true;
     }

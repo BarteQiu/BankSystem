@@ -7,7 +7,9 @@
     public enum TransactionType
     {
         Deposit,
-        Withdraw
+        Withdraw,
+        TransactionIn,
+        TransactionOut
     }
 
     public Transaction(decimal amount, TransactionType type)

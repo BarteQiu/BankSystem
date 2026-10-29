@@ -3,7 +3,7 @@
 bankSystem bankSystem = new bankSystem();
 ConsoleUI ConsoleUI = new ConsoleUI();
 
-const string Version = "0.5";
+const string Version = "0.6";
 
 ShowLogo();
 
@@ -54,6 +54,11 @@ while (programIsOn)
 
         case 5:
             bankSystem.accounts();
+            break;
+
+        case 6:
+            Console.Clear();
+            bankSystem.transferMoney();
             break;
 
         case 0:
@@ -113,6 +118,7 @@ void showMenu()
     Console.WriteLine("  [3] Withdraw money");
     Console.WriteLine("  [4] Transaction history");
     Console.WriteLine("  [5] Account management");
+    Console.WriteLine("  [6] Money transfers");
     Console.ResetColor();
 
     Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -124,6 +130,7 @@ void showMenu()
 }
 void showGoodbyeMessage()
 {
+    Console.WriteLine("\n");
     ConsoleUI.ShowHeader(" ██████╗  ██████╗  ██████╗ ██████╗ ██████╗ ██╗   ██╗███████╗");
     ConsoleUI.ShowHeader("██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝");
     ConsoleUI.ShowHeader("██║  ███╗██║   ██║██║   ██║██║  ██║██████╔╝ ╚████╔╝ █████╗");
