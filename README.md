@@ -6,12 +6,12 @@ A simple console-based banking application written in **C#** as a learning proje
 
 ## 📌 Current Version
 
-**v0.4**
+**v0.5**
 
 ## ✨ Features
 
 - 📋 Interactive console menu
-- 💰 Display current account balance
+- 💰 Display account balances
 - ➕ Deposit money
 - ➖ Withdraw money
 - 🧾 View transaction history
@@ -22,14 +22,20 @@ A simple console-based banking application written in **C#** as a learning proje
 - 🔒 Prevent withdrawals exceeding the available balance
 - ⚠️ Handle invalid menu selections and incorrect input
 - 💵 Use `decimal` for monetary values
-- 🏦 Separate `BankAccount` and `BankSystem` classes
+- 🏦 Manage multiple bank accounts
+- 🆔 Assign a unique identifier to each account
+- ➕ Create new bank accounts
+- 🔍 Search for accounts by ID
+- 📑 Display a list of all accounts
+- 🔗 Associate transactions with the correct account
 - 🔐 Encapsulate account balance using a private field
 - 🧱 Initialize accounts using a constructor
 - ✅ Validate transactions inside the account class
-- 📚 Store successful transactions in a collection
+- 📚 Store transactions in a collection
 - 🔄 Separate account logic from console interaction
+- 🖥️ Improve the console UI with consistent formatting and colored messages
 - 🕒 Display transaction timestamps in a readable format
-- 📭 Handle empty transaction history
+- 📭 Handle empty transaction histories
 
 ## 🛠️ Technologies
 
@@ -45,14 +51,16 @@ BankSystem/
 │   ├── Program.cs
 │   ├── BankSystem.cs
 │   ├── BankAccount.cs
-│   └── Transaction.cs
+│   ├── Transaction.cs
+│   └── ConsoleUI.cs
 └── README.md
 ```
 
 - `Program.cs` — application entry point and main console menu.
-- `BankSystem.cs` — handles user interaction, displays account information, and provides access to transaction history.
-- `BankAccount.cs` — manages the account balance, deposits, withdrawals, and transaction history.
+- `BankSystem.cs` — manages accounts, handles user interaction, and displays account and transaction information.
+- `BankAccount.cs` — manages individual account balances, deposits, withdrawals, and transaction history.
 - `Transaction.cs` — represents a single transaction, including its amount, type, and date.
+- `ConsoleUI.cs` — provides reusable methods for formatting console output and displaying messages.
 
 ## 💻 Source Code
 
@@ -69,27 +77,20 @@ BankSystem/
 
 The project is under active development.
 
-**Version v0.4** introduces transaction history and expands the application's object-oriented structure.
+**Version v0.5** introduces support for multiple bank accounts and improves the console user interface.
 
-Successful deposits and withdrawals are recorded as individual transactions. Each transaction stores its amount, type (`Deposit` or `Withdraw`), and date and time. Users can view their transaction history through the console menu, including a message when no transactions have been recorded.
+Users can create new accounts, each with a unique identifier, search for accounts by ID, and display a list of all existing accounts. Each account maintains its own balance and transaction history, ensuring that deposits, withdrawals, and recorded transactions belong to the correct account.
 
-The `BankAccount` class manages the account balance and records successful operations, while the `BankSystem` class handles user interaction and displays the results.
+The console UI has also been improved with reusable methods for displaying headers, success messages, error messages, and informational messages, helping keep the interface more consistent and readable.
 
-Future versions will introduce additional functionality as I progress through my C# learning roadmap.
+The project continues to evolve alongside my C# learning roadmap, with each version introducing new functionality and opportunities to practise programming concepts.
 
 ## 🗺️ Planned Improvements
 
-- 👥 Support multiple bank accounts
 - 🔄 Implement transfers between accounts
 - 💾 Save and load account data from files
 - 🧪 Add unit tests
 - 🧹 Further improve code organization and maintainability
-
-## 🎯 Purpose
-
-This project is part of my journey toward becoming a **Junior C#/.NET Backend Developer**.
-
-Its purpose is to practise C# programming, problem-solving, object-oriented programming, and clean code while gradually applying more advanced concepts in a practical project.
 
 ---
 
