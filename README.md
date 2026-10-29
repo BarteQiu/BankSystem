@@ -6,7 +6,7 @@ A simple console-based banking application written in **C#** as a learning proje
 
 ## 📌 Current Version
 
-**v0.3**
+**v0.4**
 
 ## ✨ Features
 
@@ -14,6 +14,9 @@ A simple console-based banking application written in **C#** as a learning proje
 - 💰 Display current account balance
 - ➕ Deposit money
 - ➖ Withdraw money
+- 🧾 View transaction history
+- 📅 Record transaction dates and times
+- 🏷️ Distinguish between deposits and withdrawals
 - 🛡️ Input validation using `TryParse()`
 - 🚫 Reject zero and negative transaction amounts
 - 🔒 Prevent withdrawals exceeding the available balance
@@ -23,14 +26,16 @@ A simple console-based banking application written in **C#** as a learning proje
 - 🔐 Encapsulate account balance using a private field
 - 🧱 Initialize accounts using a constructor
 - ✅ Validate transactions inside the account class
+- 📚 Store successful transactions in a collection
 - 🔄 Separate account logic from console interaction
+- 🕒 Display transaction timestamps in a readable format
+- 📭 Handle empty transaction history
 
 ## 🛠️ Technologies
 
 - 💻 C#
 - 🧩 Visual Studio
 - 🌿 Git and GitHub
-- ⚙️ .NET
 
 ## 📂 Project Structure
 
@@ -39,13 +44,15 @@ BankSystem/
 ├── BankSystem/
 │   ├── Program.cs
 │   ├── BankSystem.cs
-│   └── BankAccount.cs
+│   ├── BankAccount.cs
+│   └── Transaction.cs
 └── README.md
 ```
 
 - `Program.cs` — application entry point and main console menu.
-- `BankSystem.cs` — handles user interaction and calls account operations.
-- `BankAccount.cs` — manages the account balance, deposits, withdrawals, and transaction validation.
+- `BankSystem.cs` — handles user interaction, displays account information, and provides access to transaction history.
+- `BankAccount.cs` — manages the account balance, deposits, withdrawals, and transaction history.
+- `Transaction.cs` — represents a single transaction, including its amount, type, and date.
 
 ## 💻 Source Code
 
@@ -62,15 +69,16 @@ BankSystem/
 
 The project is under active development.
 
-**Version v0.3** introduces object-oriented programming by separating account management from console interaction.
+**Version v0.4** introduces transaction history and expands the application's object-oriented structure.
 
-The account balance is encapsulated in the `BankAccount` class, which controls deposits and withdrawals and validates transaction amounts. The `BankSystem` class handles user input and displays the results.
+Successful deposits and withdrawals are recorded as individual transactions. Each transaction stores its amount, type (`Deposit` or `Withdraw`), and date and time. Users can view their transaction history through the console menu, including a message when no transactions have been recorded.
+
+The `BankAccount` class manages the account balance and records successful operations, while the `BankSystem` class handles user interaction and displays the results.
 
 Future versions will introduce additional functionality as I progress through my C# learning roadmap.
 
 ## 🗺️ Planned Improvements
 
-- 🧾 Add transaction history
 - 👥 Support multiple bank accounts
 - 🔄 Implement transfers between accounts
 - 💾 Save and load account data from files
