@@ -2,11 +2,11 @@
 
 A simple console-based banking application written in **C#** as a learning project.
 
-🚀 The project is developed step by step alongside my C# learning roadmap, focusing on programming fundamentals, input validation, object-oriented programming, and clean code.
+🚀 The project is developed step by step alongside my C# learning roadmap, focusing on programming fundamentals, input validation, object-oriented programming, error handling, and automated testing.
 
 ## 📌 Current Version
 
-**v0.6**
+**v0.7**
 
 ## ✨ Features
 
@@ -40,11 +40,15 @@ A simple console-based banking application written in **C#** as a learning proje
 - 🖥️ Improve the console UI with consistent formatting and colored messages
 - 🕒 Display transaction timestamps in a readable format
 - 📭 Handle empty transaction histories
+- 🧪 Include automated unit tests using xUnit
+- 🛡️ Provide consistent input validation across application operations
+- ⚠️ Display clear and understandable error messages
 
 ## 🛠️ Technologies
 
 - 💻 C#
-- 🧩 Visual Studio
+- 🧪 xUnit
+- 🖥️ Visual Studio
 - 🌿 Git and GitHub
 
 ## 📂 Project Structure
@@ -57,6 +61,8 @@ BankSystem/
 │   ├── BankAccount.cs
 │   ├── Transaction.cs
 │   └── ConsoleUI.cs
+├── BankSystem.Tests/
+│   └── UnitTest1.cs
 └── README.md
 ```
 
@@ -65,6 +71,7 @@ BankSystem/
 - `BankAccount.cs` — manages individual account balances, deposits, withdrawals, transfers, and transaction history.
 - `Transaction.cs` — represents a single transaction, including its amount, type, and date.
 - `ConsoleUI.cs` — provides reusable methods for formatting console output and displaying messages.
+- `BankSystem.Tests/` — contains automated unit tests for bank account operations.
 
 ## 💻 Source Code
 
@@ -73,29 +80,25 @@ BankSystem/
 ## ▶️ How to Run
 
 1. 📥 Clone or download this repository.
-2. 🖥️ Open the project in Visual Studio.
+2. 🖥️ Open the solution in Visual Studio.
 3. ▶️ Build and run the application.
 4. 📋 Follow the instructions displayed in the console.
+
+To run the automated tests, open Test Explorer in Visual Studio and select **Run All Tests**.
 
 ## 🚧 Project Status
 
 The project is under active development.
 
-**Version v0.6** introduces money transfers between bank accounts and improves transaction history filtering.
+**Version v0.7** focuses on improving input validation, error handling, and code reliability through automated unit testing.
 
-Users can transfer money between existing accounts. The application validates account IDs, prevents transfers to the same account, rejects invalid amounts, and checks whether the source account has sufficient funds before processing a transfer.
+This version introduces consistent input validation across application operations and clearer error messages displayed to users through the console UI.
 
-Each successful transfer is recorded in both accounts: as an outgoing transfer for the sender and an incoming transfer for the recipient. Users can view the complete transaction history, filter it to show deposits and incoming transfers or withdrawals and outgoing transfers, and inspect transaction records when searching for an account.
+The project also includes an xUnit test project with automated tests covering basic bank account functionality, including account initialization, deposits, withdrawals, and money transfers.
 
-The project also supports multiple bank accounts, individual account balances, deposits, withdrawals, and account-specific transaction histories. The console UI uses reusable methods for displaying headers, success messages, error messages, and informational messages.
+The application continues to support multiple bank accounts, individual account balances, deposits, withdrawals, money transfers, and account-specific transaction histories.
 
 The project continues to evolve alongside my C# learning roadmap, with each version introducing new functionality and opportunities to practise programming concepts.
-
-## 🗺️ Planned Improvements
-
-- 💾 Save and load account data from files
-- 🧪 Add unit tests
-- 🧹 Further improve code organization and maintainability
 
 ---
 
