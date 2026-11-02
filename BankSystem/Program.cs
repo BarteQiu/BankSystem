@@ -1,7 +1,7 @@
 ﻿bankSystem bankSystem = new bankSystem();
 ConsoleUI ConsoleUI = new ConsoleUI();
 
-const string Version = "0.6";
+const string Version = "0.7";
 
 ShowLogo();
 
