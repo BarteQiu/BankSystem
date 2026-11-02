@@ -1,6 +1,4 @@
-﻿using System.Security.Principal;
-
-bankSystem bankSystem = new bankSystem();
+﻿bankSystem bankSystem = new bankSystem();
 ConsoleUI ConsoleUI = new ConsoleUI();
 
 const string Version = "0.6";
@@ -14,9 +12,7 @@ while (programIsOn)
 {
     showMenu();
 
-    Choice = Console.ReadLine();
-
-    if (!int.TryParse(Choice, out int userChoice))
+    if(!ConsoleInput.TryReadInt("  Select an option: ", out int userChoice))
     {
         Console.Clear();
         Console.WriteLine("\n");
@@ -125,8 +121,6 @@ void showMenu()
     Console.WriteLine("  [0] Exit");
     Console.ResetColor();
     ConsoleUI.ShowSeparator();
-
-    Console.Write("  Select an option: ");
 }
 void showGoodbyeMessage()
 {

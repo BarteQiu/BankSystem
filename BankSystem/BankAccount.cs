@@ -1,4 +1,4 @@
-﻿class bankAccount
+﻿public class bankAccount
 {
     public List<Transaction> Transactions = new List<Transaction>();
     private decimal _balance;
