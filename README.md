@@ -95,19 +95,23 @@ BankSystem/
 
 To run the automated tests, open Test Explorer in Visual Studio and select **Run All Tests**.
 
-## 🚧 Project Status
+## ✅ Project Status
 
-The project is under active development.
+The project is complete.
 
-**Version v0.8** focuses on implementing data persistence using JSON serialization and deserialization.
+**Final version: v0.8**
 
-This version introduces the ability to save bank account data, including account balances and transaction histories, to a JSON file and restore it when the application starts.
+Version v0.8 introduced data persistence using JSON serialization and deserialization.
 
-Basic exception handling has also been implemented to handle invalid JSON data, missing files, and file access errors.
+The application can save bank account data, including account balances and transaction histories, to a JSON file and restore it when the application starts.
 
-The application continues to support multiple bank accounts, individual account balances, deposits, withdrawals, money transfers, and account-specific transaction histories.
+Basic exception handling was also implemented to handle invalid JSON data, missing files, and file access errors.
 
-The project continues to evolve alongside my C# learning roadmap, with each version introducing new functionality and opportunities to practise programming concepts.
+The application supports multiple bank accounts, individual account balances, deposits, withdrawals, money transfers, and account-specific transaction histories.
+
+BankSystem was developed as a learning project to practise C#, object-oriented programming, application logic, error handling, and data persistence.
+
+**Development has ended with version v0.8. No further updates are planned.**
 
 ---
 
