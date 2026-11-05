@@ -1,24 +1,26 @@
 ﻿public class bankAccount
 {
-    public List<Transaction> Transactions = new List<Transaction>();
+    public List<Transaction> Transactions { get; set; } = new List<Transaction>();
+
     private decimal _balance;
     public decimal Balance
     {
         get { return _balance; }
     }
+
     private int _id;
     public int Id
     {
         get { return _id; }
     }
 
-    public bankAccount(decimal initialBalance, int Id)
+    public bankAccount(decimal Balance, int Id)
     {
-        if(initialBalance < 0)
+        if(Balance < 0)
         {
-            throw new ArgumentOutOfRangeException(nameof(initialBalance), "Initial balance cannot be negative.");
+            throw new ArgumentOutOfRangeException(nameof(Balance), "Initial balance cannot be negative.");
         }
-        _balance = initialBalance;
+        _balance = Balance;
         _id = Id;
     }
 

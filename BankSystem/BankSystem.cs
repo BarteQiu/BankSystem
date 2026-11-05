@@ -2,39 +2,45 @@
 {
     private ConsoleUI ConsoleUI = new ConsoleUI();
     private List<bankAccount> _accounts = new List<bankAccount>();
+    private BankDataStorage _storage = new BankDataStorage();
 
-    int userId = 3;
-    // Numbers 0, 1, and 2 have been taken by example accounts.
 
     public bankSystem()
     {
-        _accounts.Add(new bankAccount(748, 1));
-        _accounts.Add(new bankAccount(192, 2));
-        _accounts.Add(new bankAccount(399, 3));
+        if (File.Exists("BankDataJson.json"))
+        {
+            _accounts = _storage.Load();
+        }
+        else
+        {
+            _accounts.Add(new bankAccount(748, 1));
+            _accounts.Add(new bankAccount(192, 2));
+            _accounts.Add(new bankAccount(399, 3));
 
-        // Account 1
-        _accounts[0].Transactions.Add(
-            new Transaction(200, Transaction.TransactionType.Deposit));
+            // Account 1
+            _accounts[0].Transactions.Add(
+                new Transaction(200, Transaction.TransactionType.Deposit));
 
-        _accounts[0].Transactions.Add(
-            new Transaction(50, Transaction.TransactionType.Withdraw));
+            _accounts[0].Transactions.Add(
+                new Transaction(50, Transaction.TransactionType.Withdraw));
 
-        _accounts[0].Transactions.Add(
-            new Transaction(100, Transaction.TransactionType.Deposit));
+            _accounts[0].Transactions.Add(
+                new Transaction(100, Transaction.TransactionType.Deposit));
 
-        // Account 2
-        _accounts[1].Transactions.Add(
-            new Transaction(100, Transaction.TransactionType.Deposit));
+            // Account 2
+            _accounts[1].Transactions.Add(
+                new Transaction(100, Transaction.TransactionType.Deposit));
 
-        _accounts[1].Transactions.Add(
-            new Transaction(25, Transaction.TransactionType.Withdraw));
+            _accounts[1].Transactions.Add(
+                new Transaction(25, Transaction.TransactionType.Withdraw));
 
-        // Account 3
-        _accounts[2].Transactions.Add(
-            new Transaction(500, Transaction.TransactionType.Deposit));
+            // Account 3
+            _accounts[2].Transactions.Add(
+                new Transaction(500, Transaction.TransactionType.Deposit));
 
-        _accounts[2].Transactions.Add(
-            new Transaction(101, Transaction.TransactionType.Withdraw));
+            _accounts[2].Transactions.Add(
+                new Transaction(101, Transaction.TransactionType.Withdraw));
+        }
     }
 
     public void showBalance()
@@ -196,6 +202,7 @@
         Console.ReadKey(true);
 
         account.depositMoney(userDeposit);
+        _storage.Save(_accounts);
 
         Console.Clear();
     }
@@ -315,6 +322,7 @@
         Console.ReadKey(true);
 
         account.withdrawMoney(userWithdraw);
+        _storage.Save(_accounts);
 
         Console.Clear();
     }
@@ -667,7 +675,7 @@
         Random random = new Random();
 
         int startBalance = random.Next(0, 10000);
-        userId += 1;
+        int userId = _accounts.Max(a => a.Id) + 1;
 
         _accounts.Add(new bankAccount(startBalance, userId));
 
@@ -685,6 +693,9 @@
         Console.WriteLine("        Press any key to continue...");
 
         Console.ReadKey(true);
+
+        _storage.Save(_accounts);
+
         Console.Clear();
     }
 
@@ -969,6 +980,8 @@
         Console.WriteLine("        Press any key to continue...");
 
         Console.ReadKey(true);
+
+        _storage.Save(_accounts);
 
         Console.Clear();
     }

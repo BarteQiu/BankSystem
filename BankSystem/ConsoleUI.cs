@@ -38,7 +38,6 @@
 
 
 
-
     public void greenText(string message)
     {
         Console.ForegroundColor = ConsoleColor.Green;
