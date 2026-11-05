@@ -2,11 +2,11 @@
 
 A simple console-based banking application written in **C#** as a learning project.
 
-🚀 The project is developed step by step alongside my C# learning roadmap, focusing on programming fundamentals, input validation, object-oriented programming, and clean code.
+🚀 The project is developed step by step alongside my C# learning roadmap, focusing on programming fundamentals, input validation, object-oriented programming, error handling, data persistence, and automated testing.
 
 ## 📌 Current Version
 
-**v0.6**
+**v0.8**
 
 ## ✨ Features
 
@@ -40,11 +40,22 @@ A simple console-based banking application written in **C#** as a learning proje
 - 🖥️ Improve the console UI with consistent formatting and colored messages
 - 🕒 Display transaction timestamps in a readable format
 - 📭 Handle empty transaction histories
+- 🧪 Include automated unit tests using xUnit
+- 🛡️ Provide consistent input validation across application operations
+- ⚠️ Display clear and understandable error messages
+- 💾 Save bank account data to a JSON file
+- 📂 Load saved account data when the application starts
+- 🧾 Persist account balances and transaction histories
+- 🔁 Preserve account data between application sessions
+- ⚠️ Handle JSON deserialization errors
+- 🛡️ Handle file access and file-not-found exceptions
 
 ## 🛠️ Technologies
 
 - 💻 C#
-- 🧩 Visual Studio
+- 📄 System.Text.Json
+- 🧪 xUnit
+- 🖥️ Visual Studio
 - 🌿 Git and GitHub
 
 ## 📂 Project Structure
@@ -56,7 +67,10 @@ BankSystem/
 │   ├── BankSystem.cs
 │   ├── BankAccount.cs
 │   ├── Transaction.cs
+│   ├── BankDataStorage.cs
 │   └── ConsoleUI.cs
+├── BankSystem.Tests/
+│   └── UnitTest1.cs
 └── README.md
 ```
 
@@ -64,7 +78,9 @@ BankSystem/
 - `BankSystem.cs` — manages accounts, handles user interaction, and displays account and transaction information.
 - `BankAccount.cs` — manages individual account balances, deposits, withdrawals, transfers, and transaction history.
 - `Transaction.cs` — represents a single transaction, including its amount, type, and date.
+- `BankDataStorage.cs` — handles saving and loading bank account data using JSON serialization and deserialization.
 - `ConsoleUI.cs` — provides reusable methods for formatting console output and displaying messages.
+- `BankSystem.Tests/` — contains automated unit tests for bank account operations.
 
 ## 💻 Source Code
 
@@ -73,29 +89,25 @@ BankSystem/
 ## ▶️ How to Run
 
 1. 📥 Clone or download this repository.
-2. 🖥️ Open the project in Visual Studio.
+2. 🖥️ Open the solution in Visual Studio.
 3. ▶️ Build and run the application.
 4. 📋 Follow the instructions displayed in the console.
+
+To run the automated tests, open Test Explorer in Visual Studio and select **Run All Tests**.
 
 ## 🚧 Project Status
 
 The project is under active development.
 
-**Version v0.6** introduces money transfers between bank accounts and improves transaction history filtering.
+**Version v0.8** focuses on implementing data persistence using JSON serialization and deserialization.
 
-Users can transfer money between existing accounts. The application validates account IDs, prevents transfers to the same account, rejects invalid amounts, and checks whether the source account has sufficient funds before processing a transfer.
+This version introduces the ability to save bank account data, including account balances and transaction histories, to a JSON file and restore it when the application starts.
 
-Each successful transfer is recorded in both accounts: as an outgoing transfer for the sender and an incoming transfer for the recipient. Users can view the complete transaction history, filter it to show deposits and incoming transfers or withdrawals and outgoing transfers, and inspect transaction records when searching for an account.
+Basic exception handling has also been implemented to handle invalid JSON data, missing files, and file access errors.
 
-The project also supports multiple bank accounts, individual account balances, deposits, withdrawals, and account-specific transaction histories. The console UI uses reusable methods for displaying headers, success messages, error messages, and informational messages.
+The application continues to support multiple bank accounts, individual account balances, deposits, withdrawals, money transfers, and account-specific transaction histories.
 
 The project continues to evolve alongside my C# learning roadmap, with each version introducing new functionality and opportunities to practise programming concepts.
-
-## 🗺️ Planned Improvements
-
-- 💾 Save and load account data from files
-- 🧪 Add unit tests
-- 🧹 Further improve code organization and maintainability
 
 ---
 
